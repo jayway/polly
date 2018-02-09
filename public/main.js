@@ -25,7 +25,12 @@ $form.addEventListener('submit', (event) => {
     .then(({ text, speechMarkTypes }) => {
       $textarea.textContent = text;
       $textarea.focus();
-      $textarea.setSelectionRange(0, 5);
+
+      speechMarkTypes.forEach(({ start, end, time }) => {
+        setTimeout(() => {
+          $textarea.setSelectionRange(start, end)
+        }, time)
+      });
     })
     .catch(err => console.error(err));
 });
