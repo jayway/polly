@@ -1,19 +1,31 @@
 const $form = document.querySelector('form');
 const $text = document.querySelector('[type="text"]')
-const $player = document.querySelector('audio');
-
-const context = new AudioContext();
-
-const playSound = (buffer) => {
-  const source = context.createBufferSource();
-  source.buffer = buffer;
-  source.connect(context.destination);
-  source.start(0);
-};
+const $textarea = document.querySelector('textarea');
 
 $form.addEventListener('submit', (event) => {
-  // $player.src = '/synthesize?voiceId=Joanna' +
-  //   '&text=' + encodeURIComponent($text.value) +
-  //   '&outputFormat=ogg_vorbis';
-  // $player.play();
+  event.preventDefault();
+
+  const payload = {
+    text: $text.value
+  };
+  const data = new FormData();
+
+  data.append('json', JSON.stringify(payload));
+
+  const requestOptions = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  fetch('/synthesize', requestOptions)
+    .then(res => res.json())
+    .then(({ text, speechMarkTypes }) => {
+      $textarea.textContent = text;
+      $textarea.focus();
+      $textarea.setSelectionRange(0, 5);
+    })
+    .catch(err => console.error(err));
 });
