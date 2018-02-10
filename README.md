@@ -10,6 +10,17 @@ npm install
 
 ## Usage
 
+You need AWS credentials either through environment variables or in `~/.aws/credentials`.
+
+Example using environment variables:
+
+```sh
+export AWS_ACCESS_KEY_ID=MY_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=MY_SECRET_ACCESS_KEY
+```
+
+Then start the server:
+
 ```sh
 npm start
 ```
