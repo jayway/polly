@@ -1,6 +1,8 @@
 # polly
 
-Amazon Polly text to speech implementation. Created, hastily, at the 2018 Örenäs competence weekend.
+> [Amazon Polly](https://aws.amazon.com/polly/) text to speech implementation.
+
+Created, hastily, at the 2018 Örenäs competence weekend. Go [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Polly.html) for documentation on the Amazon Polly API.
 
 ## Install
 
