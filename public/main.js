@@ -40,6 +40,8 @@ $form.addEventListener('submit', (event) => {
     }
   };
 
+  $button.disabled = true;
+
   fetch('/synthesize', requestOptions)
     .then(res => res.json())
     .then(({ audioStream, speechMarkTypes }) => {
@@ -64,6 +66,10 @@ $form.addEventListener('submit', (event) => {
         });
 
         $player.play();
+      });
+
+      $player.addEventListener('ended', () => {
+        $button.disabled = false;
       });
     })
     .catch(err => console.error(err));
