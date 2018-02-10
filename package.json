@@ -1,11 +1,12 @@
 {
   "name": "polly",
   "version": "1.0.0",
-  "description": "",
+  "description": "Text to speech using Amazon Polly",
   "main": "index.js",
   "scripts": {
-    "start": "AWS_PROFILE=polly node lib/index.js",
-    "watch": "AWS_PROFILE=polly nodemon lib/index.js"
+    "start": "node lib/index.js",
+    "watch": "nodemon lib/index.js",
+    "lint": "eslint lib/"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,20 @@
     "express-handlebars": "^3.0.0"
   },
   "devDependencies": {
+    "eslint": "^4.17.0",
     "nodemon": "^1.14.12"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": 1
+    }
   }
 }
