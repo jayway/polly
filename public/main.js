@@ -21,13 +21,6 @@ $form.addEventListener('submit', (event) => {
       $textarea.textContent = $text.value;
       $textarea.focus();
 
-      // Highlight text as it is spoken (not really)
-      speechMarkTypes.forEach(({ start, end, time }) => {
-        setTimeout(() => {
-          $textarea.setSelectionRange(start, end)
-        }, time)
-      });
-
       // Play the audio stream
       // Ref: https://stackoverflow.com/a/41173858/517528
       const uInt8Array = new Uint8Array(audioStream.data);
@@ -36,7 +29,17 @@ $form.addEventListener('submit', (event) => {
       const url = URL.createObjectURL(blob);
 
       $player.src = url;
-      $player.play();
+
+      $player.addEventListener('loadeddata', () => {
+        // Highlight text as it is spoken (not really)
+        speechMarkTypes.forEach(({ start, end, time }) => {
+          setTimeout(() => {
+            $textarea.setSelectionRange(start, end)
+          }, time)
+        });
+
+        $player.play();
+      });
     })
     .catch(err => console.error(err));
 });
