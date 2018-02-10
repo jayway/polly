@@ -1,14 +1,39 @@
 const $form = document.querySelector('form');
 const $text = document.querySelector('[type="text"]')
+const $button = document.querySelector('button');
 const $textarea = document.querySelector('textarea');
 const $player = document.querySelector('audio');
+const $select = document.querySelector('select');
+
+window.addEventListener('load', () => {
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  // Populate voice select with available Amazon Polly voices
+  fetch('/voices', requestOptions)
+    .then(res => res.json())
+    .then(({ voices }) => {
+      voices.forEach(({ Id: voice, LanguageName: language }) => {
+        const $option = document.createElement('option');
+        $option.setAttribute('value', voice);
+        $option.textContent = `${voice} (${language})`;
+        $select.appendChild($option);
+      });
+
+      $button.disabled = false;
+    });
+});
 
 $form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const requestOptions = {
     method: 'POST',
-    body: JSON.stringify({ text: $text.value }),
+    body: JSON.stringify({
+      text: $text.value,
+      voiceId: $select[$select.selectedIndex].value
+    }),
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

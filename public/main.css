@@ -1,0 +1,44 @@
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+html {
+  padding: 1rem;
+  box-sizing: border-box;
+  font: 100%/1.5 'Helvetica Neue', sans-serif;
+}
+
+body {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+}
+
+div + div,
+fieldset + fieldset {
+  margin-top: 1rem;
+}
+
+textarea,
+[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+hr {
+  margin: 1rem 0;
+  border-width: 1px 0 0;
+  border-style: dashed;
+  color: #ccc;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}

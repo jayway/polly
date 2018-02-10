@@ -1,15 +1,26 @@
 <h1>Polly</h1>
 
 <form>
-  <div>
-    <input type="text" name="text" placeholder="Text to speak" value="The quick brown fox jumps over the lazy dog" autofocus required>
-  </div>
-  <div>
-    <button type="submit">Speak</button>
-  </div>
+  <fieldset>
+    <label for="text">Text to speak</label>
+    <input type="text" id="text" name="text" value="The quick brown fox jumps over the lazy dog" autofocus required>
+  </fieldset>
+
+  <fieldset>
+    <label for="voice">Voice</label>
+    <select id="voice" name="voice"></select>
+  </fieldset>
+
+  <fieldset>
+    <button type="submit" disabled>Speak</button>
+  </fieldset>
 </form>
 
-<textarea rows="10" cols="50" readonly>
-</textarea>
+<hr>
+
+<div>
+  <label for="output">Output</label>
+  <textarea id="output" rows="10" cols="50" readonly></textarea>
+</div>
 
 <audio></audio>
