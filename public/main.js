@@ -68,7 +68,12 @@ $form.addEventListener('submit', (event) => {
         $player.play();
       });
 
+      // Re-enable the speak button after finishing playback, or on errors
       $player.addEventListener('ended', () => {
+        $button.disabled = false;
+      });
+
+      $player.addEventListener('error', () => {
         $button.disabled = false;
       });
     })
