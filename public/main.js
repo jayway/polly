@@ -35,8 +35,7 @@ $form.addEventListener('submit', (event) => {
       voiceId: $select[$select.selectedIndex].value
     }),
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }
   };
 
